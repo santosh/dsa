@@ -6,10 +6,20 @@ package recursion;
  *      Base condition
  *      Logic
  *  --> Recursive call
+ *
+ *
+ *  Significance of tail recursion:
+ *  1. Tail recursive call is more space optimized.
+ *
+ *  The reason non-tail recursive function takes more memory because
+ *  function has to maintain the state (variable values) until
+ *  execution returns.
  */
 public class TailAndNonTailRecursion {
     public static void main(String[] args) {
-
+        int[] arr = {5, 6, 7, 8, 9};
+        tailPrintNum(arr, 0);
+        nonTailPrintNum(arr, 0);
     }
 
     public static void tailPrintNum(int[] arr, int sI) {
