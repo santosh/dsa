@@ -2,16 +2,24 @@ package recursion;
 
 public class Factorial {
     public static void main(String[] args) {
-        System.out.println(iterative(5));
-        System.out.println(recursive(5));
+        // System.out.println(iterative(5));
+        System.out.println(tailRecursive(5, 1));
     }
 
-    private static int recursive(int n) {
+    private static int nonTailRecursive(int n) {
         if (n == 1) {
             return 1;
         }
 
-        return n * recursive(n-1);
+        return n * nonTailRecursive(n-1);
+    }
+
+    private static int tailRecursive(int n, int result) {
+        if (n <= 0) {
+            return result;
+        }
+
+        return tailRecursive(n-1, result*n);
     }
 
     private static int iterative(int n) {
