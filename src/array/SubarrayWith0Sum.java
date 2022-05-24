@@ -1,7 +1,6 @@
 package array;
 
 import java.util.Scanner;
-
 public class SubarrayWith0Sum {
 
     public static boolean subArraySum(int arr[]) {
