@@ -56,27 +56,25 @@ public class LinkedList {
 
     }
 
-    public static ListNode deleteAtK(ListNode head, int data, int k) {
-        if (head == null && k != 0) {
-            return head;
-        }
-        if (k < 0 || k > length(head)) {
+    public static ListNode deleteAtK(ListNode head, int k) {
+        if (head == null || k < 0 || k > length(head)) {
             return head;
         }
 
         if (k == 0) {
-            head.setNext(null);
+            head = head.getNext();
         } else {
-            int count = 0;
+            int index = 0;
             ListNode temp = head;
 
-            while (count < k-1) {
+            while (index < k-1) {
                 temp = temp.getNext();
-                count++;
+                index++;
             }
 
-//            newNode.setNext(temp.getNext());
-//            temp.setNext(newNode);
+            ListNode next = temp.getNext().getNext();
+            temp.getNext().setNext(null);
+            temp.setNext(next);
         }
         return head;
     }
@@ -127,6 +125,41 @@ public class LinkedList {
         return false;
     }
 
+    public static ListNode startOfTheLoop(ListNode head) {
+        if (head==null || head.getNext()==null) {
+            return null;
+        }
+
+        // confirm if it has loop
+        ListNode fast = head;
+        ListNode slow = head;
+        boolean hasLoop = false;
+
+        while (fast != null && fast.getNext() != null) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+
+            if (fast==slow) {
+                hasLoop = true;
+                break;
+            }
+        }
+
+        if (!hasLoop) {
+            return null;
+        }
+
+        // find the start of the loop
+        slow = head;
+
+        while (slow.getData() != fast.getData()) {
+            slow = slow.getNext();
+            fast = fast.getNext();
+        }
+
+        return slow;
+    }
+
         public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
@@ -142,14 +175,17 @@ public class LinkedList {
         node4.setNext(node5);
         node5.setNext(node6);
         node6.setNext(node7);
-        node7.setNext(node3);
+//        node7.setNext(node3);
 
-//        traverse(node1);
+        traverse(node1);
 //        System.out.println(length(node1));
 //        insertAtK(node1, 19, 5);
 //        traverseRecursive(node1);
 //        System.out.println(isPresentRecursive(node1, 5));
 //        System.out.println(findMiddle(node5).getData());
-        System.out.println(hasLoop(node1));
+//        System.out.println(startOfTheLoop(node1));
+          deleteAtK(node1, 3);
+          System.out.println();
+          traverse(node1);
     }
 }
