@@ -160,6 +160,24 @@ public class LinkedList {
         return slow;
     }
 
+    public static ListNode reverse(ListNode head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+
+        ListNode prev = null;
+        ListNode curr = head;
+
+        while (curr != null) {
+            ListNode next = curr.getNext();
+            curr.setNext(prev);
+            prev = curr;
+            curr = next;
+        }
+
+        return prev;
+    }
+
         public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
@@ -184,8 +202,10 @@ public class LinkedList {
 //        System.out.println(isPresentRecursive(node1, 5));
 //        System.out.println(findMiddle(node5).getData());
 //        System.out.println(startOfTheLoop(node1));
-          deleteAtK(node1, 3);
-          System.out.println();
-          traverse(node1);
+//          deleteAtK(node1, 3);
+        System.out.println();
+//          traverse(node1);
+        ListNode newhead = reverse(node1);
+        traverse(newhead);
     }
 }
