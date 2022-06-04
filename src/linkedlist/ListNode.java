@@ -12,7 +12,6 @@ public class ListNode {
     public String toString() {
         return "ListNode(" +
                 "data=" + data +
-                ", next=" + next +
                 '}';
     }
 
