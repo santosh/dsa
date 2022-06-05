@@ -1,4 +1,4 @@
-package searchingandsorting;
+package search;
 
 /**
  * There is an array with elements in increasing order, then after a certain

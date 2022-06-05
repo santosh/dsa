@@ -1,4 +1,4 @@
-package searchingandsorting;
+package search;
 
 /**
  * An array was once sorted. Since then it was rotated n number of
