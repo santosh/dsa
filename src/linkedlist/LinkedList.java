@@ -178,7 +178,38 @@ public class LinkedList {
         return prev;
     }
 
-        public static void main(String[] args) {
+    public static int lengthOfTheLoop(ListNode head) {
+        return 0;
+    }
+
+    public static ListNode reverseInBlockOfK(ListNode head, int k) {
+        if (head == null) {
+            return head;
+        }
+
+        // reverse the k elements
+        ListNode current = head;
+        ListNode next = null;
+        ListNode prev = null;
+        int counter = 0;
+
+        // reverse the first k elements
+        while (counter<k && current!=null) {
+            next = current.getNext();
+            current.setNext(prev);
+            prev=current;
+            current=next;
+            counter++;
+        }
+
+        if (next!=null) {
+            head.setNext(reverseInBlockOfK(next, k));
+        }
+
+        return prev;
+    }
+
+    public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
         ListNode node3 = new ListNode(3);
@@ -186,6 +217,7 @@ public class LinkedList {
         ListNode node5 = new ListNode(5);
         ListNode node6 = new ListNode(6);
         ListNode node7 = new ListNode(7);
+        ListNode node8 = new ListNode(8);
 
         node1.setNext(node2);
         node2.setNext(node3);
@@ -193,19 +225,21 @@ public class LinkedList {
         node4.setNext(node5);
         node5.setNext(node6);
         node6.setNext(node7);
-//        node7.setNext(node3);
+        node7.setNext(node8);
 
-        traverse(node1);
-//        System.out.println(length(node1));
+//        traverse(node1);
+        System.out.println(length(node1));
 //        insertAtK(node1, 19, 5);
 //        traverseRecursive(node1);
 //        System.out.println(isPresentRecursive(node1, 5));
 //        System.out.println(findMiddle(node5).getData());
-//        System.out.println(startOfTheLoop(node1));
-//          deleteAtK(node1, 3);
-        System.out.println();
-//          traverse(node1);
-        ListNode newhead = reverse(node1);
+//        System.out.println(startOfTheLoop(node1).getData());
+//        deleteAtK(node1, 3);
+//        System.out.println();
+//        traverse(node1);
+//        ListNode newhead = reverse(node1);
+//        traverse(newhead);
+        ListNode newhead = reverseInBlockOfK(node1, 3);
         traverse(newhead);
     }
 }
