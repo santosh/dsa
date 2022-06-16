@@ -1,5 +1,7 @@
 package sort;
 
+import linkedlist.ListNode;
+
 import java.util.Arrays;
 
 public class Insertion {
@@ -21,6 +23,39 @@ public class Insertion {
             }
 
             arr[j] = v;
+        }
+    }
+
+    public static ListNode newHead;
+    private static ListNode insertionSortLL(ListNode head) {
+        if (head == null || head.getNext() == null) {
+            return head;
+        }
+
+        ListNode current = head;
+
+        while (current != null) {
+            ListNode next = current.getNext();
+            insertAtRightPosition(current);
+            current=next;
+        }
+
+        head = newHead;
+        return head;
+    }
+
+    private static void insertAtRightPosition(ListNode current) {
+        if (newHead == null || newHead.getData() >= current.getData()) {
+            current.setNext(newHead);
+            newHead = current;
+        } else {
+            ListNode temp = newHead;
+            while (temp.getNext() != null && temp.getNext().getData() < current.getData()) {
+                temp = temp.getNext();
+            }
+
+            current.setNext(temp.getNext());
+            temp.setNext(current);
         }
     }
 
