@@ -1,9 +1,12 @@
 package sort;
 
+import java.util.Arrays;
+
 public class Merge {
 
     /**
-     *
+     * Divide input array into half, recursively. While exiting from recursion,
+     * we sort each chunk we have divided.
      * @param arr
      * @param start
      * @param end
@@ -20,6 +23,7 @@ public class Merge {
         sort(arr, start, mid);
         sort(arr, mid+1, end);
 
+        // conquer part
         merge(arr, start, mid, end);
     }
 
@@ -33,28 +37,28 @@ public class Merge {
      */
     private static void merge(int[] arr, int start, int mid, int end) {
         int[] temp = new int[arr.length];
-        int tIndex = start;
+        int tempIndex = start;
 
-        int leftS = start;
-        int rightS = mid+1;
+        int leftStart = start;
+        int rightStart = mid+1;
 
-        while (leftS <= mid && rightS <= end) {
-            if (arr[leftS] < arr[rightS]) {
-                temp[tIndex] = arr[leftS];
-                leftS++;
+        while (leftStart <= mid && rightStart <= end) {
+            if (arr[leftStart] < arr[rightStart]) {
+                temp[tempIndex] = arr[leftStart];
+                leftStart++;
             } else {
-                temp[tIndex] = arr[rightS];
-                rightS++;
+                temp[tempIndex] = arr[rightStart];
+                rightStart++;
             }
-            tIndex++;
+            tempIndex++;
         }
         // If the elements in the left part is still left
-        while (leftS <= mid) {
-            temp[tIndex++] = arr[leftS++];
+        while (leftStart <= mid) {
+            temp[tempIndex++] = arr[leftStart++];
         }
         // if the element in the right part is still available
-        while (rightS <= end) {
-            temp[tIndex++] = arr[rightS++];
+        while (rightStart <= end) {
+            temp[tempIndex++] = arr[rightStart++];
         }
 
         // copy the sorted temp array to original array
@@ -64,6 +68,8 @@ public class Merge {
     }
 
     public static void main(String[] args) {
-
+        int[] arr = {1, 6, 3, 8, 3, 0, 4, 9, 5, 7, 4, 8};
+        sort(arr, 0, arr.length-1);
+        System.out.println(Arrays.toString(arr));
     }
 }
