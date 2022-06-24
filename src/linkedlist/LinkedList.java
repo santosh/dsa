@@ -209,15 +209,33 @@ public class LinkedList {
         return prev;
     }
 
+    public static ListNode removeDuplicatesInSortedLL(ListNode head) {
+        ListNode temp = head, prev = head;
+
+        while (temp != null) {
+
+            if (temp.getData() != prev.getData()) {
+                prev.setNext(temp);
+                prev = temp;
+            }
+
+            temp = temp.getNext();
+        }
+
+        if (prev != temp)
+            prev.setNext(null);
+
+        return head;
+    }
     public static void main(String[] args) {
         ListNode node1 = new ListNode(1);
-        ListNode node2 = new ListNode(2);
-        ListNode node3 = new ListNode(3);
-        ListNode node4 = new ListNode(4);
-        ListNode node5 = new ListNode(5);
-        ListNode node6 = new ListNode(6);
-        ListNode node7 = new ListNode(7);
-        ListNode node8 = new ListNode(8);
+        ListNode node2 = new ListNode(1);
+        ListNode node3 = new ListNode(2);
+        ListNode node4 = new ListNode(2);
+        ListNode node5 = new ListNode(3);
+        ListNode node6 = new ListNode(4);
+        ListNode node7 = new ListNode(5);
+        ListNode node8 = new ListNode(5);
 
         node1.setNext(node2);
         node2.setNext(node3);
@@ -239,7 +257,8 @@ public class LinkedList {
 //        traverse(node1);
 //        ListNode newhead = reverse(node1);
 //        traverse(newhead);
-        ListNode newhead = reverseInBlockOfK(node1, 3);
-        traverse(newhead);
+//        ListNode newhead = reverseInBlockOfK(node1, 3);
+        ListNode newHead = removeDuplicatesInSortedLL(node1);
+        traverse(newHead);
     }
 }
