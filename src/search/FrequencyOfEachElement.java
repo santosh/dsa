@@ -1,7 +1,5 @@
 package search;
 
-import java.util.Arrays;
-
 // Important Question
 
 /**
@@ -12,26 +10,14 @@ import java.util.Arrays;
  */
 public class FrequencyOfEachElement {
     public static void findFrequency(int[] arr) {
-        // Bring all the elements in the range of [0, arr.length -1]
+        for (int j = 0; j < arr.length; j++)
+            arr[j] = arr[j] - 1;
 
-        for(int i=0;i<arr.length;i++){
-            arr[i]=arr[i]-1;
-        }
+        for (int i = 0; i < arr.length; i++)
+            arr[arr[i] % arr.length] = arr[arr[i] % arr.length] + arr.length;
 
-        // Transformation of the array
-        for(int i=0;i<arr.length;i++){
-            arr[arr[i]%arr.length] = arr[arr[i]%arr.length]+arr.length;
-        }
-
-        // Find the frequency
-        for(int i=0;i<arr.length;i++){
-            arr[i]=arr[i]/arr.length;
-        }
-
-        System.out.println(Arrays.toString(arr));
-        for (int i=0 ;i<arr.length;i++){
-            System.out.println((i+1) +" -> "+arr[i]);
-        }
+        for (int i = 0; i < arr.length; i++)
+            System.out.println(i + 1 + " : " + arr[i] / arr.length);
     }
 
     public static void main(String[] args) {

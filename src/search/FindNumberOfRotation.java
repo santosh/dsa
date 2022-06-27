@@ -1,7 +1,7 @@
 package search;
 
 /**
- * An array was once sorted. Since then it was rotated n number of
+ * An array was once sorted. Since then, it was rotated n number of
  * times. Find n.
  */
 public class FindNumberOfRotation {
