@@ -1,5 +1,7 @@
 package sort;
 
+import linkedlist.DLLNode;
+import linkedlist.DoublyLinkedList;
 import linkedlist.LinkedList;
 import linkedlist.ListNode;
 
@@ -78,8 +80,7 @@ public class Merge {
 }
 
 class MergeLL {
-    public static ListNode sortedMerge(ListNode a, ListNode b)
-    {
+    public static ListNode sortedMerge(ListNode a, ListNode b) {
         ListNode result = null;
         /* Base cases */
         if (a == null)
@@ -146,5 +147,70 @@ class MergeLL {
         LinkedList.traverse(head);
 
         LinkedList.traverse(mergeSort(head));
+    }
+}
+
+class MergeDLL {
+    public static DLLNode split(DLLNode head) {
+        DLLNode fast = head, slow = head;
+        while (fast.getNext() != null && fast.getNext().getNext() != null) {
+            fast = fast.getNext().getNext();
+            slow = slow.getNext();
+        }
+        DLLNode temp = slow.getNext();
+        slow.setNext(null);
+        return temp;
+    }
+
+    public static DLLNode mergeSort(DLLNode node) {
+        if (node == null || node.getNext() == null) {
+            return node;
+        }
+        DLLNode second = split(node);
+
+        node = mergeSort(node);
+        second = mergeSort(second);
+
+        return merge(node, second);
+    }
+
+    public static DLLNode merge(DLLNode first, DLLNode second) {
+        if (first == null) {
+            return second;
+        }
+
+        if (second == null) {
+            return first;
+        }
+
+        if (first.getData() < second.getData()) {
+            first.setNext(merge(first.getNext(), second));
+            first.getNext().setPrev(first);
+            first.setPrev(null);
+            return first;
+        } else {
+            second.setNext(merge(first, second.getNext()));
+            second.getNext().setPrev(second);
+            second.setPrev(null);
+            return second;
+        }
+    }
+
+    public static void main(String[] args) {
+        DLLNode node1 = new DLLNode(9);
+        DLLNode node2 = new DLLNode(2);
+        DLLNode node3 = new DLLNode(11);
+        DLLNode node4 = new DLLNode(4);
+        DLLNode node5 = new DLLNode(20);
+
+        node1.setNext(node2);
+        node2.setNext(node3); node2.setPrev(node1);
+        node3.setNext(node4); node3.setPrev(node2);
+        node4.setNext(node5); node4.setPrev(node3);
+        node5.setPrev(node4);
+
+        DoublyLinkedList.traverse(node1);
+        System.out.println();
+        DoublyLinkedList.traverse(mergeSort(node1));
     }
 }
