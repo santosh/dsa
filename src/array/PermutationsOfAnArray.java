@@ -28,8 +28,7 @@ import java.util.regex.*;
  */
 public class PermutationsOfAnArray {
     private static void print(int[] arr) {
-        for (int i = 0; i < arr.length; i++)
-            System.out.print(arr[i] + " ");
+        for (int j : arr) System.out.print(j + " ");
         System.out.println();
     }
     public static void arrayPermutations(int[] arr, int size) {
@@ -38,15 +37,15 @@ public class PermutationsOfAnArray {
 
         for (int i = 0; i < size; i++) {
             arrayPermutations(arr, size - 1);
+            int temp;
             if (size % 2 == 1) {
-                int temp = arr[0];
+                temp = arr[0];
                 arr[0] = arr[size - 1];
-                arr[size - 1] = temp;
             } else {
-                int temp = arr[i];
+                temp = arr[i];
                 arr[i] = arr[size - 1];
-                arr[size - 1] = temp;
             }
+            arr[size - 1] = temp;
         }
     }
     public static void main(String[] args) {
