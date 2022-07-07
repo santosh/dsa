@@ -2,6 +2,8 @@ package queue;
 
 import linkedlist.ListNode;
 
+import java.util.Stack;
+
 class QueueWithArray {
     private int[] arr;
     private int front;
@@ -100,5 +102,34 @@ class QueueWithLinkedList {
 
     public static void main(String[] args) {
 
+    }
+}
+
+class QueueWithStack {
+    private Stack<Integer> stack1 = new Stack<>();
+
+    // This internal java stack can take any size
+    private Stack<Integer> stack2 = new Stack<>();
+
+    public void enQueue(int data){
+
+        while(!stack1.isEmpty()){
+            //move all the elements from stack1 to stack2
+            stack2.push(stack1.pop());
+        }
+
+        stack1.push(data);
+
+        // Push back all the elements from s2 to s1
+        while(!stack2.isEmpty()){
+            stack1.push(stack2.pop());
+        }
+    }
+
+    public int deQueue(){
+        if(stack1.isEmpty()){
+            throw new RuntimeException("Queue underflow exception");
+        }
+        return stack1.pop();
     }
 }
