@@ -2,6 +2,9 @@ package stack;
 
 import linkedlist.ListNode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class StackUsingArray {
     private int[] arr;  // to hold data
     private int capacity;  // total capacity of array
@@ -10,7 +13,7 @@ class StackUsingArray {
     public StackUsingArray(int capacity) {
         this.capacity = capacity;
         this.arr = new int[capacity];
-        this.top = -1;  // initially thereis no element
+        this.top = -1;  // initially there is no element
     }
 
     public boolean isEmpty() {
@@ -80,6 +83,33 @@ class StackUsingLinkedList {
     }
 }
 
+class StackUsingQueue {
+
+    private Queue<Integer> q1 = new LinkedList<>();
+    private Queue<Integer> q2 = new LinkedList<>();
+
+    public void push(int data){
+        // Q1  -> Q2
+        while(!q1.isEmpty()){
+            q2.add(q1.remove());
+        }
+        // Insert the data in Q1
+        q1.add(data);
+
+        // Insert the data from Q2 to Q1
+        while(!q2.isEmpty()){
+            q1.add(q2.remove());
+        }
+    }
+
+    public int pop(){
+        if(q1.isEmpty()){
+            throw new RuntimeException("Stack underflow exception");
+        }
+        int data = q1.remove();
+        return data;
+    }
+}
 
 public class Stack {
     public static void main(String[] args) {
