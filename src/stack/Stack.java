@@ -7,11 +7,9 @@ import java.util.Queue;
 
 class StackUsingArray {
     private int[] arr;  // to hold data
-    private int capacity;  // total capacity of array
     private int top;  // index of the last element added
 
     public StackUsingArray(int capacity) {
-        this.capacity = capacity;
         this.arr = new int[capacity];
         this.top = -1;  // initially there is no element
     }
@@ -21,7 +19,7 @@ class StackUsingArray {
     }
 
     public boolean isFull() {
-        return top == capacity-1;
+        return top == this.arr.length-1;
     }
 
     public void push(int data) {
