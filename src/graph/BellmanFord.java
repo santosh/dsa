@@ -4,67 +4,74 @@ import java.util.ArrayList;
 import java.util.List;
 
 class BellmanGraph {
-    // vertices of graph
+    //vertices of the graph
     private int V;
-    // edges in the graph
+    //edges in the graph
     private List<BellmanEdge> edges;
-
-    public BellmanGraph() {
+    //creating a constructor of the Graph class and generating getters and setters
+    public BellmanGraph(int v)
+    {
+        V = v;
         edges = new ArrayList<BellmanEdge>();
     }
-
-    public int getV() {
+    public int getV()
+    {
         return V;
     }
-
-    public void setV(int v) {
+    public void setV(int v)
+    {
         V = v;
     }
-
-    public List<BellmanEdge> getEdges() {
+    public List<BellmanEdge> getEdges()
+    {
         return edges;
     }
-
-    public void setEdges(List<BellmanEdge> edges) {
+    public void setEdges(List<BellmanEdge> edges)
+    {
         this.edges = edges;
     }
-
-    public void addEdge(int u, int v, int w) {
+    public void addEdge(int u, int v, int w)
+    {
         BellmanEdge e = new BellmanEdge(u, v, w);
         edges.add(e);
     }
 }
 
 class BellmanEdge {
-    private int u; // source vertex
-    private int v; // destination vertex
-    private int w; // edge weight
-
-    public void setU(int u) {
-        this.u = u;
-    }
-
-    public void setV(int v) {
-        this.v = v;
-    }
-
-    public void setW(int w) {
-        this.w = w;
-    }
-
-    public int getU() {
+    //it is the source vertex
+    private int u;
+    //it is the destination vertex
+    private int v;
+    //it denotes the weight on edge
+    private int w;
+    //generating getters and setters
+    public int getU()
+    {
         return u;
     }
-
-    public int getV() {
+    public void setU(int u)
+    {
+        this.u = u;
+    }
+    public int getV()
+    {
         return v;
     }
-
-    public int getW() {
+    public void setV(int v)
+    {
+        this.v = v;
+    }
+    public int getW()
+    {
         return w;
     }
-
-    public BellmanEdge(int u, int v, int w) {
+    public void setW(int w)
+    {
+        this.w = w;
+    }
+    //creating constructor of the Edge class
+    public BellmanEdge(int u, int v, int w)
+    {
         this.u = u;
         this.v = v;
         this.w = w;
